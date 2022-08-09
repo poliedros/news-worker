@@ -5,7 +5,7 @@ import { Cache } from 'cache-manager';
 export class RedisService {
   constructor(@Inject(CACHE_MANAGER) private cacheManager: Cache) {}
 
-  async save<T>(data: T) {
-    await this.cacheManager.set('NEWS_DATA', data, { ttl: 60 * 60 });
+  async save<T>(key: string, value: T) {
+    await this.cacheManager.set(key, value, { ttl: 60 * 60 });
   }
 }
