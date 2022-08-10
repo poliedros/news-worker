@@ -9,13 +9,16 @@ export class NewsapiService {
 
   async fetch() {
     const res = await firstValueFrom(
-      this.httpService.get('https://newsapi.org/v2/top-headlines', {
-        params: {
-          apiKey: process.env.NEWS_API_KEY,
-          country: process.env.COUNTRY,
-          category: process.env.CATEGORY,
+      this.httpService.get<NewsApiResponse>(
+        'https://newsapi.org/v2/top-headlines',
+        {
+          params: {
+            apiKey: process.env.NEWS_API_KEY,
+            country: process.env.COUNTRY,
+            category: process.env.CATEGORY,
+          },
         },
-      }),
+      ),
     );
 
     console.log(res.data);
