@@ -21,6 +21,7 @@ export class NewsapiService {
       ),
     );
 
+    console.log(res.data);
     return res.data;
   }
 
