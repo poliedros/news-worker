@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { NewsapiModule } from './newsapi/newsapi.module';
-import { RedisModule } from './redis/redis.module';
+import { MongoModule } from './mongo/mongo.module';
 
 @Module({
-  imports: [NewsapiModule, RedisModule],
+  imports: [NewsapiModule, MongoModule],
   controllers: [],
   providers: [],
 })

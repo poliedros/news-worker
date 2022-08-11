@@ -1,6 +1,6 @@
-import { Injectable, NotImplementedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { endWith, firstValueFrom } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import { Article, News, NewsApiResponse } from './../interfaces';
 
 @Injectable()
@@ -21,7 +21,6 @@ export class NewsapiService {
       ),
     );
 
-    console.log(res.data);
     return res.data;
   }
 

@@ -1,3 +1,4 @@
+import { MongoService } from './mongo/mongo.service';
 import { NestFactory } from '@nestjs/core';
 import { ServiceUnavailableException } from '@nestjs/common';
 import { AppModule } from './app.module';
@@ -17,20 +18,20 @@ async function bootstrap() {
   const app = await NestFactory.createApplicationContext(AppModule);
 
   const newsService = app.get(NewsapiService);
-  const redisService = app.get(RedisService);
+  const mongoService = app.get(MongoService);
 
   const data = await newsService.fetch();
   if (data.status !== 'ok') throw new ServiceUnavailableException();
 
   const res = newsService.transformData(data);
 
-  console.log(`First article saved on Redis:`);
+  console.log(`First article saved on Mongo:`);
   printNews(res, 0);
 
-  console.log(`Second article saved on Redis:`);
-  printNews(res, 2);
+  console.log(`Second article saved on Mongo:`);
+  printNews(res, 1);
 
-  redisService.save('NEWS_DATA', res);
+  await mongoService.save(res);
 
   await app.close();
 }
