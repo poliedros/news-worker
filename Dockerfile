@@ -32,6 +32,9 @@ ENV COUNTRY=${COUNTRY}
 ARG CATEGORY='general'
 ENV CATEGORY=${CATEGORY}
 
+ARG MONGO_URL=''
+ENV MONGO_URL=${MONGO_URL}
+
 WORKDIR /usr/src/app
 
 COPY package*.json ./
