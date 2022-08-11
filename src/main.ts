@@ -2,7 +2,6 @@ import { MongoService } from './mongo/mongo.service';
 import { NestFactory } from '@nestjs/core';
 import { ServiceUnavailableException } from '@nestjs/common';
 import { AppModule } from './app.module';
-import { RedisService } from './redis/redis.service';
 import { NewsapiService } from './newsapi/newsapi.service';
 import { News } from './interfaces';
 
