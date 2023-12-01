@@ -3,7 +3,7 @@
 </p>
 
 ```
-docker run -e MONGO_URL='' -e NEWS_API_KEY='' -e COUNTRY='' -e CATEGORY='' carloszan/news-worker:v9
+docker run -e MONGO_URL='' -e NEWS_API_KEY='' -e COUNTRY='' -e CATEGORY='' carloszan/news-worker:v12
 
 ```
 
