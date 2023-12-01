@@ -1,4 +1,4 @@
-FROM node:16.13.1 AS development
+FROM node:lts AS development
 
 WORKDIR /usr/src/app
 
@@ -12,7 +12,7 @@ COPY . .
 
 RUN npm run build
 
-FROM node:16.13.1 as production
+FROM node:lts as production
 
 ARG NEWS_API_KEY=''
 ENV NEWS_API_KEY=${NEWS_API_KEY}
