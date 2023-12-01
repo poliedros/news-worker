@@ -7,6 +7,7 @@ import { Article, News, NewsApiResponse } from './../interfaces';
 export class NewsapiService {
   constructor(private readonly httpService: HttpService) {}
 
+  // TODO: this http request has to reprocress if it fails (401 for example)
   async fetch() {
     const res = await firstValueFrom(
       this.httpService.get<NewsApiResponse>(
@@ -25,13 +26,8 @@ export class NewsapiService {
   }
 
   transformData(data: NewsApiResponse): News[] {
-    return data.articles.map(({ title, source, publishedAt }: Article) => {
-      const news: News = {
-        headline: title,
-        by: source.name,
-        publishedAt: publishedAt,
-      };
-      return news;
+    return data.articles.map((article: Article) => {
+      return article;
     });
   }
 }

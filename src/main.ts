@@ -5,10 +5,10 @@ import { AppModule } from './app.module';
 import { NewsapiService } from './newsapi/newsapi.service';
 import { News } from './interfaces';
 
-function printNews(news: News[], n: number) {
-  const { headline, by, publishedAt } = news[n];
-  console.log(`Headline: ${headline}`);
-  console.log(`By: ${by}`);
+function printNews(news: News) {
+  const { title, source, publishedAt } = news;
+  console.log(`Headline: ${title}`);
+  console.log(`By: ${source.name}`);
   console.log(`Published at: ${publishedAt}`);
   console.log('\n');
 }
@@ -24,11 +24,8 @@ async function bootstrap() {
 
   const res = newsService.transformData(data);
 
-  console.log(`First article saved on Mongo:`);
-  printNews(res, 0);
-
-  console.log(`Second article saved on Mongo:`);
-  printNews(res, 1);
+  console.log(`First article fetched:`);
+  printNews(res[0]);
 
   await mongoService.save(res);
 

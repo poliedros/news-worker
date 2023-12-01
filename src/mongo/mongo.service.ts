@@ -12,19 +12,21 @@ export class MongoService {
   ) {}
 
   async save(data: News[]) {
-    console.log(`Deleting all documents on the collection...`);
-    await this.articleModel.deleteMany({});
-    console.log('Deleted');
+    let savedDocs = 0;
 
     console.log(`Saving ${data.length} documents to Mongodb...`);
 
-    const articleModels = [];
-    for (const { headline, by, publishedAt } of data) {
-      const articleModel = new this.articleModel({ headline, by, publishedAt });
-      articleModels.push(articleModel);
+    for (const article of data) {
+      const articleModel = new this.articleModel(article);
+
+      try {
+        await this.articleModel.insertMany(articleModel);
+        savedDocs += 1;
+      } catch (e) {}
     }
 
-    await this.articleModel.bulkSave(articleModels);
-    console.log('Saved');
+    console.log(`Saved ${savedDocs} documents to Mongodb...`);
+
+    console.log('Saved!');
   }
 }

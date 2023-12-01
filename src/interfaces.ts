@@ -1,7 +1,12 @@
 export interface News {
-  headline: string;
+  source: Source;
+  author: string;
+  title: string;
+  description: string;
+  url: string;
+  urlToImage: string;
   publishedAt: Date;
-  by: string;
+  content: string;
 }
 
 export interface Source {
